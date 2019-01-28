@@ -1,4 +1,4 @@
-<!doctype html>
+<!Doctype html>
 <html lang="en">
 
 <head>
@@ -35,20 +35,29 @@
         <div class="card ">
             <div class="card-header text-center"><a href="#"><img class="logo-img" src="<?php echo base_url()?>assets/images/logo.png" alt="logo"></a><span class="splash-description">Gunakan Akun Anda untuk Masuk</span></div>
             <div class="card-body">
-                <form>
+                <div id="infoMessage">
+                    <?php
+                        $message = $this->session->flashdata('message');
+                        echo $message == '' ? '' : '<div class="alert alert-danger">' . $message . '</div>';
+                      ?>
+                </div>
+                <?php echo validation_errors('<div class="alert alert-danger">', '</div>') ?>
+                <?php echo form_open('login/login_proses'); ?>
+                <fieldset>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" id="username" type="text" placeholder="user" autocomplete="off">
+                        <input name="nama" class="form-control form-control-lg" id="name" type="text" placeholder="Nama" required="true" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" id="password" type="password" placeholder="Sandi">
+                        <input name="sandi" class="form-control form-control-lg" id="sandi" type="password" required="true" placeholder="Sandi" >
                     </div>
                     <div class="form-group">
                         <label class="custom-control custom-checkbox">
                             <input class="custom-control-input" type="checkbox"><span class="custom-control-label">Ingat Pass</span>
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Masuk</button>
-                </form>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fas fa-login"></i> Masuk</button>
+                </fieldset>
+                <?php echo form_close();?>
             </div>
             <div class="card-footer bg-white p-0  ">
                 <div class="card-footer-item card-footer-item-bordered">
