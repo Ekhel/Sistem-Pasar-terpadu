@@ -36,7 +36,7 @@
                   $no = 1;
                   foreach($hasil as $item){ ?>
                     <tr>
-                      <td><?php echo $no++ ?></td>
+                      <td class="text-center"><?php echo $no++ ?></td>
                       <td><?php echo $item->uraian_tugas ?></td>
                     </tr>
                     <?php } ?>
@@ -50,17 +50,25 @@
       <div class="tab-pane fade" id="outline-two" role="tabpanel" aria-labelledby="tab-outline-two">
         <div class="card">
           <div class="card-body">
+            <a href="#" class="btn btn-outline-primary" data-target="#" data-toggle="modal" title="Tambah Data"><i class="fa fa-plus-circle"></i></a>
+            <hr/>
             <div class="col-lg-12">
               <div class="table table-responsive">
                 <table class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <th>No</th>
-                      <th>Nama Tempat</th>
-                      <th>Longitude</th>
-                      <th>Latitude</th>
-                      <th>Keterangan</th>
-                      <th></th>
+                      <th rowspan="2">No</th>
+                      <th rowspan="2">NAMA</th>
+                      <th colspan="3">JUMLAH PEDANGANG</th>
+                      <th rowspan="2">LUAS</th>
+                      <th rowspan="2">TYPE</th>
+                      <th rowspan="2">KETERANGAN</th>
+                      <th rowspan="2"></th>
+                    </tr>
+                    <tr>
+                      <th>Kecil</th>
+                      <th>Sedang</th>
+                      <th>Besar</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -68,10 +76,13 @@
                   $i = 1;
                   foreach($tempat as $temp){ ?>
                     <tr>
-                      <td><?php echo $i++ ?></td>
+                      <td class="text-center"><?php echo $i++ ?></td>
                       <td><?php echo $temp->nama_tempat ?></td>
-                      <td><?php echo $temp->longitude ?></td>
-                      <td><?php echo $temp->latitude ?></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td><?php echo $temp->luas_pasar ?></td>
+                      <td><?php echo $temp->type ?></td>
                       <td><?php echo $temp->keterangan ?></td>
                       <td><a href="#" class="fas fa-map" data-toggle="tooltip" data-placement="bottom" title="Lihat Dalam Peta"></a></td>
                     </tr>

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <?php if(isset($map['js'])) echo $map['js'];?>
     <title><?php echo $title ?></title>
 </head>
 
@@ -20,7 +21,7 @@
     <div class="dashboard-main-wrapper">
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="index.html">Perindag</a>
+                <a class="navbar-brand" href="index.html">@WORKPLACE</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -188,6 +189,19 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#">Progres Realisasi</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Base Data</a>
+                                <div id="submenu-4" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo base_url()?>Pangkalan_minyak">Pangkalan Minyak Tanah</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Pasar</a>
                                         </li>
                                     </ul>
                                 </div>
