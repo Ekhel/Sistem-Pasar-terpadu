@@ -201,7 +201,7 @@
                                             <a class="nav-link" href="<?php echo base_url()?>Pangkalan_minyak">Pangkalan Minyak Tanah</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Pasar</a>
+                                            <a class="nav-link" href="<?php echo base_url()?>Pedagang">Pedagang</a>
                                         </li>
                                     </ul>
                                 </div>

@@ -60,4 +60,14 @@ class M_pangkalan extends CI_Model{
     $query = $this->db->query("SELECT * FROM tb_distrik");
     return $query->result();
   }
+  function detail_pangkalan($id_pangkalan)
+  {
+    $query = $this->db->query("SELECT *
+      FROM tb_pangkalan_minyak
+      LEFT JOIN tb_distrik ON tb_distrik.id_distrik = tb_pangkalan_minyak.id_distrik
+      LEFT JOIN tb_kampung ON tb_kampung.id_kampung = tb_pangkalan_minyak.id_kampung
+      WHERE tb_pangkalan_minyak.id_pangkalan = '$id_pangkalan'");
+
+      return $query->result();
+  }
 }

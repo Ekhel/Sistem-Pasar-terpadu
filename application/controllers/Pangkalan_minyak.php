@@ -12,7 +12,7 @@ class Pangkalan_minyak extends CI_Controller {
   {
     $data['title'] = 'Data Pangkalan Minyak';
     $data['result'] = $this->M_pangkalan->tampil_pangkalan();
-
+    $data['distrik'] = $this->M_pangkalan->getdistrik();
     $this->template->load('MasterAdmin','pangkalan/tampil_pangkalan',$data);
   }
 
@@ -103,7 +103,7 @@ class Pangkalan_minyak extends CI_Controller {
 		$marker['infowindow_content'] .= 'Nama';
 		$marker['infowindow_content'] .= '</td>';
 		$marker['infowindow_content'] .= '<td>';
-		$marker['infowindow_content'] .= '<strong>' .$value->nama .'<strong>';
+		$marker['infowindow_content'] .= '<strong><a href="'.base_url("Pangkalan_minyak/profile_pangkalan/{$value->id_pangkalan}").'">'.$value->nama.'</strong></a>';
 		$marker['infowindow_content'] .= '</td>';
 		$marker['infowindow_content'] .= '</tr>';
 		$marker['infowindow_content'] .= '<tr class="small">';
@@ -148,26 +148,10 @@ class Pangkalan_minyak extends CI_Controller {
 		$marker['infowindow_content'] .= '</tr>';
     $marker['infowindow_content'] .= '<tr class="small">';
 		$marker['infowindow_content'] .= '<td>';
-		$marker['infowindow_content'] .= 'Alamat';
-		$marker['infowindow_content'] .= '</td>';
-		$marker['infowindow_content'] .= '<td>';
-		$marker['infowindow_content'] .= '<strong>' .$value->alamat.'<strong>';
-		$marker['infowindow_content'] .= '</td>';
-		$marker['infowindow_content'] .= '</tr>';
-    $marker['infowindow_content'] .= '<tr class="small">';
-		$marker['infowindow_content'] .= '<td>';
 		$marker['infowindow_content'] .= 'Status';
 		$marker['infowindow_content'] .= '</td>';
 		$marker['infowindow_content'] .= '<td>';
 		$marker['infowindow_content'] .= '<strong>' .$value->status.'<strong>';
-		$marker['infowindow_content'] .= '</td>';
-		$marker['infowindow_content'] .= '</tr>';
-    $marker['infowindow_content'] .= '<tr class="small">';
-		$marker['infowindow_content'] .= '<td>';
-		$marker['infowindow_content'] .= 'Keterangan';
-		$marker['infowindow_content'] .= '</td>';
-		$marker['infowindow_content'] .= '<td>';
-		$marker['infowindow_content'] .= '<strong>' .$value->keterangan.'<strong>';
 		$marker['infowindow_content'] .= '</td>';
 		$marker['infowindow_content'] .= '</tr>';
 		$marker['infowindow_content'] .= '</table>';
@@ -192,4 +176,13 @@ class Pangkalan_minyak extends CI_Controller {
 
       return $query->result();
   }
+
+  public function profile_pangkalan()
+  {
+    $data['title'] = 'Profile Agent pangkalan';
+    $data['result'] = $this->M_pangkalan->detail_pangkalan($this->uri->segment(3));
+
+    $this->template->load('MasterAdmin','pangkalan/profile_pangkalan',$data);
+  }
+  
 }
