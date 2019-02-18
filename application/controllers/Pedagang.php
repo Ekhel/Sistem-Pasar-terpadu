@@ -40,4 +40,10 @@ class Pedagang extends CI_Controller {
           </div>");
 		redirect('Pedagang');
   }
+  function hapus_pedagang($param = 0)
+	{
+		$this->M_pedagang->hapus_pedagang($param);
+
+		redirect('Pedagang');
+	}
 }

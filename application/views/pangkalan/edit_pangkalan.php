@@ -19,19 +19,19 @@
           <div class="form-group row">
             <label class="col-3 col-lg-2 col-form-label text-right">Nama</label>
             <div class="col-7 col-lg-7">
-              <input name="nama" type="text" class="form-control">
+              <input name="nama" type="text" class="form-control" value="<?php echo $pangkalan->nama ?>">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-3 col-lg-2 col-form-label text-right">Pemilik</label>
             <div class="col-7 col-lg-7">
-              <input name="pemilik" type="text" class="form-control">
+              <input name="pemilik" type="text" class="form-control" value="<?php echo $pangkalan->pemilik ?>">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-3 col-lg-2 col-form-label text-right">Distrik</label>
             <div class="col-5 col-lg-5">
-              <select name="id_distrik" id="id_distrik" class="form-control">
+              <select name="id_distrik" id="id_distrik" class="form-control" value="<?php echo $pangkalan->id_distrik ?>">
                 <option value="">-- Pilih --</option>
       						<?php
       						foreach($distrik as $dis => $val)
@@ -45,7 +45,7 @@
           <div class="form-group row">
             <label class="col-3 col-lg-2 col-form-label text-right">Kampung</label>
             <div class="col-5 col-lg-5">
-              <select name="id_kampung" id="id_kampung" class="form-control">
+              <select name="id_kampung" id="id_kampung" class="form-control" value="<?php echo $pangkalan->id_kampung ?>">
 
               </select>
             </div>
@@ -53,26 +53,26 @@
           <div class="form-group row">
             <label class="col-3 col-lg-2 col-form-label text-right">No Reg</label>
             <div class="col-4 col-lg-4">
-              <input name="no" type="text" class="form-control">
+              <input name="no" type="text" class="form-control" value="<?php echo $pangkalan->no ?>">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-3 col-lg-2 col-form-label text-right">Alamat</label>
             <div class="col-9 col-lg-10">
-              <input name="alamat" type="text" class="form-control">
+              <input name="alamat" type="text" class="form-control" value="<?php echo $pangkalan->alamat ?>">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-3 col-lg-2 col-form-label text-right">Koordinat</label>
-            <div class="col-sm-4 col-lg-3 mb-3 mb-sm-0">
-              <input name="latitude" type="text" value="<?php echo set_value('latitude') ?>" placeholder="Latitude" class="form-control">
+            <div class="col-sm-6 col-lg-3 mb-3 mb-sm-0">
+              <input name="latitude" type="text" value="<?php echo $pangkalan->latitude ?>" placeholder="Latitude" class="form-control">
             </div>
-            <div class="col-sm-4 col-lg-3">
-              <input name="longitude" type="text" value="<?php echo set_value('longitude') ?>" placeholder="Longitude" class="form-control">
+            <div class="col-sm-6 col-lg-3">
+              <input name="longitude" type="text" value="<?php echo $pangkalan->longitude ?>" placeholder="Longitude" class="form-control">
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-3 col-lg-2 col-form-label text-right"></label>
+            <label class="col-3 col-lg-2 col-form-label text-right">Maps</label>
             <div class="col-9 col-lg-10">
               <?php echo $map['html'] ?>
               <!--<div width="800px" height="300px"></div>!-->
@@ -81,7 +81,7 @@
           <div class="form-group row">
             <label class="col-3 col-lg-2 col-form-label text-right">Penyedia</label>
             <div class="col-5 col-lg-5">
-              <select name="penyedia" class="form-control">
+              <select name="penyedia" class="form-control" value="<?php echo $pangkalan->penyedia ?>">
                 <option value="">--- Pilih ---</option>
                 <option value="PT Sejahtra Keluarga Papua">PT Sejahtra Keluarga Papua</option>
                 <option value="PT Wira Sembada">PT Wira Sembada</option>
@@ -92,13 +92,13 @@
           <div class="form-group row">
             <label class="col-3 col-lg-2 col-form-label text-right">Tanggal Operasi</label>
             <div class="col-4 col-lg-4">
-              <input name="tanggal_mulai_operasi" type="text" class="form-control">
+              <input name="tanggal_mulai_operasi" type="text" class="form-control" value="<?php echo $pangkalan->tanggal_mulai_operasi ?>">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-3 col-lg-2 col-form-label text-right">Status</label>
             <div class="col-4 col-lg-4">
-              <select name="status" class="form-control">
+              <select name="status" class="form-control" value="<?php echo $pangkalan->status ?>">
                 <option value="aktif">Aktif</option>
                 <option value="nonaktif">Tidak Aktif</option>
               </select>
@@ -107,14 +107,19 @@
           <div class="form-group row">
             <label class="col-3 col-lg-2 col-form-label text-right">Keterangan</label>
             <div class="col-9 col-lg-10">
-              <textarea name="keterangan" rows="8" class="form-control" cols="80"></textarea>
+              <textarea name="keterangan" rows="8" class="form-control" cols="80" value="<?php echo $pangkalan->keterangan ?>"></textarea>
               <!--<input name="keterangan" type="text" class="form-control">!-->
             </div>
           </div>
           <div class="form-group row">
             <label class="col-3 col-lg-2 col-form-label text-right">Foto</label>
-            <div class="col-9 col-lg-10">
+            <div class="col-4 col-lg-10">
               <input type="file" name="gambar" class="form-control">
+              <div class="col-5">
+                <?php if($pangkalan->gambar != '') : ?>
+                  <img src="<?php echo base_url("public/profile/{$pangkalan->gambar}") ?>" height="150">
+                <?php endif; ?>
+              </div>
               <hr/>
               <input type="submit" class="btn btn-outline-primary" value="Simpan">
               <a href="<?php echo base_url()?>Pangkalan_minyak" class="btn btn-outline-danger">Batal</a>

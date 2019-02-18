@@ -11,7 +11,8 @@ class Pangkalan_minyak extends CI_Controller {
   public function index()
   {
     $data['title'] = 'Data Pangkalan Minyak';
-    $data['result'] = $this->M_pangkalan->tampil_pangkalan();
+    //$data['result'] = $this->M_pangkalan->tampil_pangkalan($id_distrik,$id_kampung);
+    $data['result'] = $this->M_pangkalan->getAllPangkalan();
     $data['distrik'] = $this->M_pangkalan->getdistrik();
     $this->template->load('MasterAdmin','pangkalan/tampil_pangkalan',$data);
   }
@@ -66,9 +67,11 @@ class Pangkalan_minyak extends CI_Controller {
 
   public function peta_pangkalan()
   {
+    $this->data['distrik'] = $this->M_pangkalan->getdistrik();
     $this->data['title'] = "Peta Pangkalan Minyak";
+    //$config['kmlLayerURL'] = 'http://filemanager.bappeda.jayapurakab.go.id/repository/PENLAP/KML/ADMIN_KAMPUNG_MONITORING.kml';
 		$config['center'] = '-2.5588092, 140.4749569';
-		$config['zoom'] = '13';
+		$config['zoom'] = '10';
 		$config['styles'] = array(
 		  	array(
 		  		"name"=>"No Businesses",
@@ -87,6 +90,7 @@ class Pangkalan_minyak extends CI_Controller {
 		  	)
 		);
 		$this->googlemaps->initialize($config);
+
 		foreach($this->data_pangkalan() as $key => $value) :
 		$marker = array();
 		$marker['position'] = "{$value->latitude}, {$value->longitude}";
@@ -103,7 +107,7 @@ class Pangkalan_minyak extends CI_Controller {
 		$marker['infowindow_content'] .= 'Nama';
 		$marker['infowindow_content'] .= '</td>';
 		$marker['infowindow_content'] .= '<td>';
-		$marker['infowindow_content'] .= '<strong><a href="'.base_url("Pangkalan_minyak/profile_pangkalan/{$value->id_pangkalan}").'">'.$value->nama.'</strong></a>';
+		$marker['infowindow_content'] .= '<strong><a href="'.base_url("Pangkalan_minyak/profile_pangkalan/{$value->id_pangkalan}").'"target="_blank">'.$value->nama.'</strong></a>';
 		$marker['infowindow_content'] .= '</td>';
 		$marker['infowindow_content'] .= '</tr>';
 		$marker['infowindow_content'] .= '<tr class="small">';
@@ -168,14 +172,25 @@ class Pangkalan_minyak extends CI_Controller {
 
   function data_pangkalan()
   {
-      $query = $this->db->query("SELECT *
-      FROM tb_pangkalan_minyak
-      LEFT JOIN tb_distrik ON tb_distrik.id_distrik = tb_pangkalan_minyak.id_distrik
-      LEFT JOIN tb_kampung ON tb_kampung.id_kampung = tb_pangkalan_minyak.id_kampung
-      ORDER BY tb_pangkalan_minyak.id_pangkalan");
 
-      return $query->result();
+    $id_distrik = $this->input->get('q');
+    $this->db->like('tb_pangkalan_minyak.id_distrik', $id_distrik);
+    $this->db->join('tb_distrik', 'tb_pangkalan_minyak.id_distrik = tb_distrik.id_distrik', 'left');
+    $this->db->join('tb_kampung', 'tb_pangkalan_minyak.id_kampung = tb_kampung.id_kampung', 'left');
+		$this->db->order_by('id_pangkalan', 'desc');
+    return $this->db->get('tb_pangkalan_minyak')->result();
   }
+
+  //function data_pangkalan($id_distrik = 0, $id_kampung = 0)
+  //{
+      //$query = $this->db->query("SELECT *
+      //FROM tb_pangkalan_minyak
+      //LEFT JOIN tb_distrik ON tb_distrik.id_distrik = tb_pangkalan_minyak.id_distrik
+      //LEFT JOIN tb_kampung ON tb_kampung.id_kampung = tb_pangkalan_minyak.id_kampung
+      //WHERE tb_pangkalan_minyak.id_distrik = '$id_distrik' AND tb_pangkalan_minyak.id_kampung = '$id_kampung'");
+
+      //return $query->result();
+  //}
 
   public function profile_pangkalan()
   {
@@ -184,5 +199,59 @@ class Pangkalan_minyak extends CI_Controller {
 
     $this->template->load('MasterAdmin','pangkalan/profile_pangkalan',$data);
   }
-  
+  public function edit_pangkalan($param = 0)
+	{
+		$this->data['title'] = "Edit Data Pangkalan Minyak Tanah";
+
+    $this->data['distrik'] = $this->M_pangkalan->getdistrik();
+
+    $this->form_validation->set_rules('nama', 'nama', 'trim|required');
+    $this->form_validation->set_rules('pemilik', 'pemilik', 'trim|required');
+    $this->form_validation->set_rules('id_distrik', 'id_distrik', 'trim|required');
+    $this->form_validation->set_rules('id_kampung', 'id_kampung', 'trim|required');
+    $this->form_validation->set_rules('no', 'no', 'trim|required');
+    $this->form_validation->set_rules('alamat', 'alamat', 'trim|required');
+    $this->form_validation->set_rules('latitude', 'latitude', 'trim|required');
+    $this->form_validation->set_rules('longitude', 'longitude', 'trim|required');
+    $this->form_validation->set_rules('tanggal_mulai_operasi', 'tanggal_mulai_operasi', 'trim|required');
+    $this->form_validation->set_rules('status', 'status', 'trim|required');
+    $this->form_validation->set_rules('keterangan', 'keterangan', 'trim|required');
+
+    if ($this->form_validation->run() == TRUE)
+    {
+      $this->M_pangkalan->edit_pangkalan();
+
+      redirect(current_url());
+    }
+
+    $this->data['pangkalan'] = $this->M_pangkalan->getpangkalan($param);
+
+    $config['map_div_id'] = "map-add";
+		$config['map_height'] = "250px";
+		$config['center'] = '-2.5588092, 140.4749569';
+		$config['zoom'] = '12';
+		$config['map_height'] = '300px;';
+		$this->googlemaps->initialize($config);
+
+		$marker = array();
+		$marker['position'] = '-2.5588092, 140.4749569';
+		$marker['draggable'] = true;
+		$marker['ondragend'] = 'setMapToForm(event.latLng.lat(), event.latLng.lng());';
+		$this->googlemaps->add_marker($marker);
+		$this->data['map'] = $this->googlemaps->create_map();
+
+		$this->template->load('MasterAdmin','pangkalan/edit_pangkalan', $this->data);
+	}
+  public function hapus_pangkalan($param = 0)
+	{
+		$this->M_pangkalan->hapus_pangkalan($param);
+
+		redirect('Pangkalan_minyak');
+	}
+  public function print()
+  {
+    $data['title'] = 'DATA PANGKALAN MINYAK TANAH';
+    $data['result'] = $this->M_pangkalan->tampil_pangkalan();
+    $this->load->view('pangkalan/print_datapangkalan',$data);
+  }
 }

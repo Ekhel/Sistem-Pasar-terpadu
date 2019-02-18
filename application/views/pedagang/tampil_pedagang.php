@@ -17,6 +17,7 @@
               <th>Jenis Dagangan</th>
               <th>info Kontak</th>
               <th>Keterangan</th>
+              <th>#</th>
             </tr>
           </thead>
           <tbody>
@@ -32,7 +33,10 @@
                 <td><?php echo $item->loss ?></td>
                 <td><?php echo $item->jenis_dagangan ?></td>
                 <td><?php echo $item->no_kontak ?></td>
-                <th><?php echo $item->keterangan ?></th>
+                <td><?php echo $item->keterangan ?></td>
+                <td>
+                  <a href="<?php echo base_url()?>Pedagang/hapus_pedagang/<?php echo $item->id_kios?>" onclick="return confirm('Hapus Data ini Dari Database ?')" class="fa fa-trash" data-toggle="tooltip" data-placement="bottom" title="Hapus"></a>
+                </td>
               </tr>
             <?php } ?>
           </tbody>

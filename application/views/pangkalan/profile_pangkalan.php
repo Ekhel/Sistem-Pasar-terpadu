@@ -6,10 +6,10 @@
                     <div class="col-md-4">
                         <div class="profile-img">
                             <img src="<?php echo base_url()?>public/profile/<?php echo $hasil->gambar ?>" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
+                            <!--<div class="file btn btn-lg btn-primary">
                                 Ganti Foto
                                 <input type="file" name="file"/>
-                            </div>
+                            </div>!-->
                         </div>
                     </div>
                     <div class="col-md-6">
