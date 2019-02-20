@@ -192,17 +192,17 @@ class Pangkalan_minyak extends CI_Controller {
       //return $query->result();
   //}
 
-  public function profile_pangkalan()
+  public function profile_pangkalan($id_pangkalan = null)
   {
+    $where = array('id_pangkalan' => $id_pangkalan);
     $data['title'] = 'Profile Agent pangkalan';
     $data['result'] = $this->M_pangkalan->detail_pangkalan($this->uri->segment(3));
-
+    $data['lap'] = $this->M_pangkalan->view_laporan($where,'tb_masuk')->result();
     $this->template->load('MasterAdmin','pangkalan/profile_pangkalan',$data);
   }
   public function edit_pangkalan($param = 0)
 	{
 		$this->data['title'] = "Edit Data Pangkalan Minyak Tanah";
-
     $this->data['distrik'] = $this->M_pangkalan->getdistrik();
 
     $this->form_validation->set_rules('nama', 'nama', 'trim|required');

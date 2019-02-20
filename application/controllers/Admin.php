@@ -8,7 +8,7 @@ class Admin extends CI_Controller{
 			$this->load->library('form_validation');
 			$this->load->database();
 	    $this->load->helper('url');
-			$this->load->model('M_admin');
+			$this->load->model(array('M_admin','M_kampung'));
 	}
 
   public function index()
@@ -103,5 +103,11 @@ class Admin extends CI_Controller{
     $data['hasil'] = $this->db->query("SELECT * FROM tb_uraiantugas ORDER BY tb_uraiantugas.id_uraian")->result();
     $data['tempat'] = $this->db->query("SELECT * FROM tb_tempat ORDER BY tb_tempat.id_tempat")->result();
     $this->template->load('MasterAdmin','admin/uraiantempat',$data);
+  }
+  public function Kampung()
+  {
+    $data['title'] = 'Daftar Nama Kampung';
+    $data['result'] = $this->M_kampung->tampil_kampung();
+    $this->template->load('MasterAdmin','admin/kampung',$data);
   }
 }

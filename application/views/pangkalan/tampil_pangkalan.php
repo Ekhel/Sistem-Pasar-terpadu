@@ -45,7 +45,6 @@
                 <th colspan="3">Lokasi</th>
                 <th rowspan="2">Penyedia</th>
                 <th rowspan="2">Status</th>
-                <th rowspan="2">Keterangan</th>
                 <th colspan="2">#</th>
               </tr>
               <tr>
@@ -78,7 +77,6 @@
                     }
                     ?>
                   </td>
-                  <td><?php echo $item->keterangan ?></td>
 
                   <td>
                     <a href="<?php echo base_url('Pangkalan_minyak/edit_pangkalan/'.$item->id_pangkalan); ?>" class="fa fa-edit" data-toggle="tooltip" data-placement="bottom" title="Edit Data"></a>

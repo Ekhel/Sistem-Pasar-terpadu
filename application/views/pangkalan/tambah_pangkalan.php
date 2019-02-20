@@ -59,7 +59,7 @@
           <div class="form-group row">
             <label class="col-3 col-lg-2 col-form-label text-right">Alamat</label>
             <div class="col-9 col-lg-10">
-              <input name="alamat" type="text" class="form-control">
+              <textarea name="alamat" rows="3" class="form-control" cols="80"></textarea>
             </div>
           </div>
           <div class="form-group row">
@@ -92,7 +92,7 @@
           <div class="form-group row">
             <label class="col-3 col-lg-2 col-form-label text-right">Tanggal Operasi</label>
             <div class="col-4 col-lg-4">
-              <input name="tanggal_mulai_operasi" type="text" class="form-control">
+              <input name="tanggal_mulai_operasi" type="date" class="form-control">
             </div>
           </div>
           <div class="form-group row">
@@ -107,7 +107,7 @@
           <div class="form-group row">
             <label class="col-3 col-lg-2 col-form-label text-right">Keterangan</label>
             <div class="col-9 col-lg-10">
-              <textarea name="keterangan" rows="8" class="form-control" cols="80"></textarea>
+              <textarea name="keterangan" rows="5" class="form-control" cols="80"></textarea>
               <!--<input name="keterangan" type="text" class="form-control">!-->
             </div>
           </div>

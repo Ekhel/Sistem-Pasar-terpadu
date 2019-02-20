@@ -28,7 +28,7 @@ class M_pangkalan extends CI_Model{
     $this->db->like('tb_pangkalan_minyak.id_distrik', $id_distrik);
     $this->db->join('tb_distrik', 'tb_pangkalan_minyak.id_distrik = tb_distrik.id_distrik', 'left');
     $this->db->join('tb_kampung', 'tb_pangkalan_minyak.id_kampung = tb_kampung.id_kampung', 'left');
-		$this->db->order_by('id_pangkalan', 'desc');
+		$this->db->order_by('id_pangkalan', 'ASC');
     return $this->db->get('tb_pangkalan_minyak')->result();
 	}
   function tambah_pangkalan()
@@ -140,4 +140,8 @@ class M_pangkalan extends CI_Model{
             </a>
           </div>");
 	}
+  function view_laporan($id_pangkalan,$tb_masuk)
+  {
+    return $this->db->get_where($tb_masuk,$id_pangkalan);
+  }
 }

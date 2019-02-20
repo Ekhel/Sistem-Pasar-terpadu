@@ -160,6 +160,9 @@
                                 <div id="submenu-2" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                       <li class="nav-item">
+                                          <a class="nav-link" href="<?php echo base_url('Admin/Kampung')?>"> Kampung</a>
+                                      </li>
+                                      <!--<li class="nav-item">
                                           <a class="nav-link" href="<?php echo base_url('Admin/uraian_tugas')?>"> Uraian & Tempat Tugas</a>
                                       </li>
                                         <li class="nav-item">
@@ -167,7 +170,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="<?php echo base_url('Petugas')?>">Petugas Lapangan</a>
-                                        </li>
+                                        </li>!-->
                                     </ul>
                                 </div>
                             </li>
@@ -194,7 +197,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Base Data</a>
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-fw fa-chart-pie"></i>Base Data</a>
                                 <div id="submenu-4" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
@@ -203,15 +206,16 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="<?php echo base_url()?>Pedagang">Pedagang</a>
                                         </li>
+
                                     </ul>
                                 </div>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fab fa-fw fa-wpforms"></i>Laporan</a>
-                                <div id="submenu-4" class="collapse submenu" style="">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fab fa-fw fa-wpforms"></i>Laporan</a>
+                                <div id="submenu-5" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/form-elements.html">Post</a>
+                                            <a class="nav-link" href="<?php echo base_url()?>Laporan">Pengantaran Minyak</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -254,7 +258,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                             Copyright © 2019 Dinas Perdagangan
+                             Copyright © 2019 Dinas Perindustrian dan Perdagangan
                         </div>
 
                     </div>

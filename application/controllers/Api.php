@@ -8,7 +8,7 @@ class Api extends CI_Controller{
 			$this->load->library('form_validation');
 			$this->load->database();
 	    $this->load->helper('url');
-			$this->load->model('M_petugas');
+			$this->load->model(array('M_petugas','M_api'));
 	}
 
   public function index()
@@ -29,6 +29,30 @@ class Api extends CI_Controller{
             );
         }
     $response['petugas'] = $posts;
+    header('Content-Type: application/json');
+    echo json_encode($response,TRUE);
+  }
+  public function rest_users()
+  {
+    $pengguna = $this->M_api->get_user();
+    $data['pengguna'] = $pengguna;
+    $response = array();
+    $posts = array();
+    foreach ($pengguna as $result)
+    {
+      $posts[] = array(
+        'id_user'          =>  $result->id_user,
+        'status'           =>  $result->status,
+        'nama'             =>  $result->nama,
+        'sandi'            =>  $result->sandi,
+        'sandi_deskripsi'  =>  $result->sandi_deskripsi,
+        'level'            =>  $result->level,
+        'email'            =>  $result->email,
+        'nama_lengkap'     =>  $result->nama_lengkap,
+        'kontak'           =>  $result->kontak,
+      );
+    }
+    $response['pengguna'] = $posts;
     header('Content-Type: application/json');
     echo json_encode($response,TRUE);
   }

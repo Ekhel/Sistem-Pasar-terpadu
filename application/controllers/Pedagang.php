@@ -6,6 +6,7 @@ class Pedagang extends CI_Controller {
   {
     parent::__construct();
     $this->load->model('M_pedagang');
+    $this->load->library('form_validation');
   }
   public function index()
   {
@@ -43,7 +44,28 @@ class Pedagang extends CI_Controller {
   function hapus_pedagang($param = 0)
 	{
 		$this->M_pedagang->hapus_pedagang($param);
-
 		redirect('Pedagang');
 	}
+  public function edit_pedagang($param = 0)
+  {
+    $this->data['title'] = "Edit Data Pedagang";
+
+    $this->form_validation->set_rules('nama_pedagang', 'nama_pedagang', 'trim|required');
+    $this->form_validation->set_rules('block', 'block', 'trim|required');
+    $this->form_validation->set_rules('no_kios', 'no_kios', 'trim|required');
+    $this->form_validation->set_rules('status_bangunan', 'status_bangunan', 'trim|required');
+    $this->form_validation->set_rules('loss', 'loss', 'trim|required');
+    $this->form_validation->set_rules('jenis_dagangan', 'jenis_dagangan', 'trim|required');
+    $this->form_validation->set_rules('no_kontak', 'no_kontak', 'trim|required');
+    $this->form_validation->set_rules('keterangan', 'keterangan', 'trim|required');
+    if ($this->form_validation->run() == TRUE)
+    {
+      $this->M_pedagang->editpedagang();
+
+      redirect(current_url());
+    }
+    $this->data['pedagang'] = $this->M_pedagang->getpedagang($param);
+    $this->template->load('MasterAdmin','pedagang/edit_pedagang',$this->data);
+  }
+
 }

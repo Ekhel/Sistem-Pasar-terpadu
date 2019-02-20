@@ -28,4 +28,21 @@ class M_pedagang extends CI_Model{
             </a>
           </div>");
 	}
+  function editpedagang($param = 0)
+  {
+    $pedagang = $this->getpedagang($param);
+		$object = array(
+			'nama_pedagang' => $this->input->post('nama_pedagang'),
+			'block' => $this->input->post('block'),
+			'no_kios' => $this->input->post('no_kios'),
+			'status_bangunan' => $this->input->post('status_bangunan'),
+			'loss' => $this->input->post('loss'),
+      'jenis_dagangan' => $this->input->post('jenis_dagangan'),
+      'no_kontak' => $this->input->post('no_kontak'),
+      'keterangan' => $this->input->post('keterangan')
+		);
+
+		$this->db->update('tb_kios', $object, array('id_kios' => $param));
+		$this->session->set_flashdata('message', "Data Pedagang Berhasil Diubah");
+  }
 }

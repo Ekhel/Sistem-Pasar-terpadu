@@ -18,6 +18,7 @@
               <th>info Kontak</th>
               <th>Keterangan</th>
               <th>#</th>
+              <th>#</th>
             </tr>
           </thead>
           <tbody>
@@ -36,6 +37,9 @@
                 <td><?php echo $item->keterangan ?></td>
                 <td>
                   <a href="<?php echo base_url()?>Pedagang/hapus_pedagang/<?php echo $item->id_kios?>" onclick="return confirm('Hapus Data ini Dari Database ?')" class="fa fa-trash" data-toggle="tooltip" data-placement="bottom" title="Hapus"></a>
+                </td>
+                <td>
+                  <a href="<?php echo base_url('Pedagang/edit_pedagang/'.$item->id_kios); ?>" class="fa fa-edit" data-toggle="tooltip" data-placement="bottom" title="Edit Data"></a>
                 </td>
               </tr>
             <?php } ?>
