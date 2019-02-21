@@ -174,8 +174,8 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Data Master</a>
+                            <!--<li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="far fa-folder-open"></i>Data Master</a>
                                 <div id="submenu-3" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
@@ -195,7 +195,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li>!-->
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-fw fa-chart-pie"></i>Base Data</a>
                                 <div id="submenu-4" class="collapse submenu" style="">
@@ -210,6 +210,7 @@
                                     </ul>
                                 </div>
                             </li>
+
                             <li class="nav-item ">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fab fa-fw fa-wpforms"></i>Laporan</a>
                                 <div id="submenu-5" class="collapse submenu" style="">
@@ -220,7 +221,16 @@
                                     </ul>
                                 </div>
                             </li>
-
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-users"></i>Users</a>
+                                <div id="submenu-6" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo base_url()?>Admin/pengguna">Pengguna</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
                             <li class="nav-divider">
                                 Features
                             </li>

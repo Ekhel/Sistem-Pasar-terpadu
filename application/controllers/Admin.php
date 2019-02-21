@@ -110,4 +110,40 @@ class Admin extends CI_Controller{
     $data['result'] = $this->M_kampung->tampil_kampung();
     $this->template->load('MasterAdmin','admin/kampung',$data);
   }
+  public function pengguna()
+  {
+    $data['title'] = 'Admin | Pengguna';
+		$data['hasil'] = $this->db->query("SELECT * FROM tb_user
+				LEFT JOIN tb_user_level ON tb_user.level = tb_user_level.id_level
+				ORDER BY tb_user.id_user");
+    $data['level'] = $this->db->query("SELECT * FROM tb_user_level ORDER BY tb_user_level.id_level ASC");
+    $this->template->load('MasterAdmin','admin/pengguna',$data);
+  }
+  public function tambah_pengguna()
+	{
+			$this->load->view('tambah_user',$data);
+	}
+  public function tambah_pengguna_proses()
+	{
+			$data['nama'] = $this->input->post('nama');
+			$data['sandi'] = md5($this->input->post('sandi'));
+			$data['sandi_deskripsi'] = $this->input->post('sandi');
+			$data['nama_lengkap'] = $this->input->post('nama_lengkap');
+			$data['kontak'] = $this->input->post('kontak');
+			$data['email'] = $this->input->post('email');
+			$data['status'] = $this->input->post('status');
+			$data['level'] = $this->input->post('level');
+			$this->M_admin->add_users($data);
+			$this->session->set_flashdata("msg","
+							<div class='alert alert-success fade in'>
+									<a href='#' class='close' data-dismiss='alert'>&times;</a>
+									<strong>Success !</strong> Berhasil Manambah Pengguna !
+							</div>");
+			redirect('Admin/pengguna');
+	}
+  function hapus_pengguna($param = 0)
+	{
+		$this->M_admin->hapus_pengguna($param);
+		redirect('Admin/pengguna');
+	}
 }
