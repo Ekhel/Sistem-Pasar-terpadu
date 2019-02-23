@@ -69,7 +69,7 @@ class Pangkalan_minyak extends CI_Controller {
   {
     $this->data['distrik'] = $this->M_pangkalan->getdistrik();
     $this->data['title'] = "Peta Pangkalan Minyak";
-    //$config['kmlLayerURL'] = 'http://filemanager.bappeda.jayapurakab.go.id/repository/PENLAP/KML/ADMIN_KAMPUNG_MONITORING.kml';
+    $config['kmlLayerURL'] = 'http://filemanager.bappeda.jayapurakab.go.id/repository/PENLAP/KML/ADMIN_KAMPUNG_MONITORING.kml';
 		$config['center'] = '-2.5588092, 140.4749569';
 		$config['zoom'] = '10';
 		$config['styles'] = array(

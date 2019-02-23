@@ -22,7 +22,7 @@
             $no = 1;
             foreach($result as $item){ ?>
               <tr>
-                <td><?php echo $no ?></td>
+                <td><?php echo $no++ ?></td>
                 <td><?php echo $item->nama ?></td>
                 <td><?php echo $item->tanggal ?></td>
                 <td><?php echo $item->liter ?></td>
