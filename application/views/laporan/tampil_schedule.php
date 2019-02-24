@@ -3,6 +3,7 @@
     <div class="card-body">
       <?php echo $this->session->flashdata('msg');?>
       <a href="<?php echo base_url()?>Laporan/input_laporan" class="btn btn-outline-primary"><i class="fa fa-plus-circle"></i> Tambah</a>
+      <a href="<?php echo base_url()?>Laporan/kalender" class="btn btn-outline-primary"><i class="fas fa-calendar"></i> Kalender</a>
       <hr/>
       <div class="table-responsive">
         <table class="table table-bordered">

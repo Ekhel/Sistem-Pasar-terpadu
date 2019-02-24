@@ -38,4 +38,26 @@ class Laporan extends CI_Controller {
           </div>");
 		redirect('Laporan');
   }
+  public function kalender()
+  {
+    $data_calendar = $this->M_laporan->tampil_schedule();
+		$calendar = array();
+		foreach ($data_calendar as $key => $val)
+		{
+			$calendar[] = array(
+				'id' 	=> intval($val->id_masuk),
+        'start' => date_format(date_create($val->tanggal) ,"Y-m-d"),
+				'title' => $val->nama,
+        'description' => $val->liter,
+        'drum' => $val->drum,
+        'penyedia' => $val->penyedia,
+				//'color' => $val->color,
+			);
+		}
+
+		$data = array();
+		$data['get_data']	= json_encode($calendar);
+    $data['title'] = 'Kalender Laporan';
+    $this->template->load('MasterAdmin','laporan/lap_calender',$data);
+  }
 }

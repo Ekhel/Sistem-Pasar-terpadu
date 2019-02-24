@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
+    <link href="<?php echo base_url()?>assets/vendor/full-calendar/css/fullcalendar.css" rel='stylesheet' />
+    <link href="<?php echo base_url()?>assets/vendor/full-calendar/css/fullcalendar.print.css" rel='stylesheet' media='print' />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <?php if(isset($map['js'])) echo $map['js'];?>
     <title><?php echo $title ?></title>
@@ -27,11 +29,11 @@
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <div id="custom-search" class="top-search-bar">
                                 <input class="form-control" type="text" placeholder="Search..">
                             </div>
-                        </li>
+                        </li>!-->
                         <li class="nav-item dropdown notification">
                             <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
                             <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
@@ -79,7 +81,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown connection">
+                        <!--<li class="nav-item dropdown connection">
                             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
                             <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
                                 <li class="connection-list">
@@ -110,7 +112,7 @@
                                     <div class="conntection-footer"><a href="#">More</a></div>
                                 </li>
                             </ul>
-                        </li>
+                        </li>!-->
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url()?>assets/images/user1.png" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
@@ -306,6 +308,10 @@
     <script src="<?php echo base_url()?>assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
     <script src="<?php echo base_url()?>assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="<?php echo base_url()?>assets/libs/js/dashboard-ecommerce.js"></script>
+    <script src="<?php echo base_url()?>assets/vendor/full-calendar/js/moment.min.js"></script>
+    <script src="<?php echo base_url()?>assets/vendor/full-calendar/js/fullcalendar.js"></script>
+    <script src="<?php echo base_url()?>assets/vendor/full-calendar/js/jquery-ui.min.js"></script>
+    <!--<script src="<?php echo base_url()?>assets/vendor/full-calendar/js/cal.js"></script>!-->
 </body>
 
 </html>
