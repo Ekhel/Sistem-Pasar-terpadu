@@ -61,7 +61,7 @@
               foreach($result as $item){?>
                 <tr class="center">
                   <td><?php echo $no++ ?></td>
-                  <td><?php echo $item->nama ?></td>
+                  <td><?php echo anchor_popup('Pangkalan_minyak/print_data/'.$item->id_pangkalan,$item->nama)?></td>
                   <td><?php echo $item->pemilik ?></td>
                   <td><?php echo $item->no ?></td>
                   <td><?php echo $item->nama_distrik ?></td>

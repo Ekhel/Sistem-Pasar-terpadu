@@ -6,7 +6,7 @@ class Pangkalan_minyak extends CI_Controller {
   {
     parent::__construct();
     $this->load->model('M_pangkalan');
-    $this->load->library(array('googlemaps','session','form_validation'));
+    $this->load->library(array('googlemaps','session','form_validation','ciqrcode'));
   }
   public function index()
   {
@@ -26,29 +26,9 @@ class Pangkalan_minyak extends CI_Controller {
   public function tambah_pangkalan()
   {
     $this->data['title'] = "Tambah Pangkalan Minyak Tanak";
-
     $this->data['distrik'] = $this->M_pangkalan->getdistrik();
 
-    $this->form_validation->set_rules('nama', 'nama', 'trim|required');
-		$this->form_validation->set_rules('pemilik', 'pemilik', 'trim|required');
-		$this->form_validation->set_rules('id_distrik', 'id_distrik', 'trim|required');
-		$this->form_validation->set_rules('id_kampung', 'id_kampung', 'trim|required');
-		$this->form_validation->set_rules('no', 'no', 'trim|required');
-		$this->form_validation->set_rules('alamat', 'alamat', 'trim|required');
-    $this->form_validation->set_rules('latitude', 'latitude', 'trim|required');
-    $this->form_validation->set_rules('longitude', 'longitude', 'trim|required');
-    $this->form_validation->set_rules('tanggal_mulai_operasi', 'tanggal_mulai_operasi', 'trim|required');
-    $this->form_validation->set_rules('status', 'status', 'trim|required');
-    $this->form_validation->set_rules('keterangan', 'keterangan', 'trim|required');
-
-		if ($this->form_validation->run() == TRUE)
-		{
-			$this->M_pangkalan->tambah_pangkalan();
-
-			redirect(current_url());
-		}
-
-		$config['map_div_id'] = "map-add";
+    $config['map_div_id'] = "map-add";
 		$config['map_height'] = "250px";
 		$config['center'] = '-2.5588092, 140.4749569';
 		$config['zoom'] = '12';
@@ -62,7 +42,57 @@ class Pangkalan_minyak extends CI_Controller {
 		$this->googlemaps->add_marker($marker);
 		$this->data['map'] = $this->googlemaps->create_map();
 
-		$this->template->load('MasterAdmin','pangkalan/tambah_pangkalan', $this->data);
+    $this->template->load('MasterAdmin','pangkalan/tambah_pangkalan', $this->data);
+  }
+
+  function tambah_pangkalan_proses()
+  {
+    //$this->form_validation->set_rules('nama', 'nama', 'trim|required');
+		//$this->form_validation->set_rules('pemilik', 'pemilik', 'trim|required');
+		//$this->form_validation->set_rules('id_distrik', 'id_distrik', 'trim|required');
+		//$this->form_validation->set_rules('id_kampung', 'id_kampung', 'trim|required');
+		//$this->form_validation->set_rules('no', 'no', 'trim|required');
+		//$this->form_validation->set_rules('alamat', 'alamat', 'trim|required');
+    //$this->form_validation->set_rules('latitude', 'latitude', 'trim|required');
+    //$this->form_validation->set_rules('longitude', 'longitude', 'trim|required');
+    //$this->form_validation->set_rules('tanggal_mulai_operasi', 'tanggal_mulai_operasi', 'trim|required');
+    //$this->form_validation->set_rules('status', 'status', 'trim|required');
+    //$this->form_validation->set_rules('keterangan', 'keterangan', 'trim|required');
+    //qrcode --Start
+
+    $nama=$this->input->post('nama');
+		$pemilik=$this->input->post('pemilik');
+		$id_distrik=$this->input->post('id_distrik');
+    $id_kampung=$this->input->post('id_kampung');
+		$no=$this->input->post('no');
+		$alamat=$this->input->post('alamat');
+    $latitude=$this->input->post('latitude');
+		$longitude=$this->input->post('longitude');
+    $penyedia=$this->input->post('penyedia');
+		$tanggal=$this->input->post('tanggal_mulai_operasi');
+    $status=$this->input->post('status');
+		$keterangan=$this->input->post('keterangan');
+
+    $con['cacheable']	= true; //boolean, the default is true
+		$con['cachedir']		= './assets/'; //string, the default is application/cache/
+		$con['errorlog']		= './assets/'; //string, the default is application/logs/
+		$con['imagedir']		= './public/profile/'; //direktori penyimpanan qr code
+		$con['quality']		= true; //boolean, the default is true
+		$con['size']			= '1024'; //interger, the default is 1024
+		$con['black']		= array(224,255,255); // array, default is array(255,255,255)
+		$con['white']		= array(70,130,180); // array, default is array(0,0,0)
+		$this->ciqrcode->initialize($con);
+
+		$image_name=$nama.'.png'; //buat name dari qr code sesuai dengan nim
+		$params['data'] = $nama; //data yang akan di jadikan QR CODE
+		$params['level'] = 'H'; //H=High
+		$params['size'] = 10;
+		$params['savename'] = FCPATH.$con['imagedir'].$image_name; //simpan image QR CODE ke folder assets/images/
+		$this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
+
+    $this->M_pangkalan->tambah_pangkalan1($nama,$pemilik,$id_distrik,$id_kampung,$no,$alamat,$latitude,$longitude,$penyedia,$tanggal,$status,$keterangan,$image_name);
+
+    redirect('Pangkalan_minyak');
   }
 
   public function peta_pangkalan()
@@ -199,6 +229,13 @@ class Pangkalan_minyak extends CI_Controller {
     $data['result'] = $this->M_pangkalan->detail_pangkalan($this->uri->segment(3));
     $data['lap'] = $this->M_pangkalan->view_laporan($where,'tb_masuk')->result();
     $this->template->load('MasterAdmin','pangkalan/profile_pangkalan',$data);
+  }
+  public function print_data($id_pangkalan = null)
+  {
+    $where = array('id_pangkalan' => $id_pangkalan);
+    $data['title'] = 'Cetak';
+    $data['hasil'] = $this->M_pangkalan->detail_pangkalan($this->uri->segment(3));
+    $this->load->view('pangkalan/cetak_profile',$data);
   }
   public function edit_pangkalan($param = 0)
 	{

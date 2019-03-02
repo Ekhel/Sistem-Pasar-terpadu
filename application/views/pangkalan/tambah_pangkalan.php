@@ -3,7 +3,7 @@
     <div class="card">
       <h5 class="card-header"><i class="fa fa-plus-circle"></i> Tambah Data Pangkalan Minyak Tanah</h5>
       <div class="card-body">
-        <form action="<?php echo current_url(); ?>" method="post" enctype="multipart/form-data">
+        <form method="post" action="<?php echo base_url()?>Pangkalan_minyak/tambah_pangkalan_proses">
           <div class="form-group row">
             <?php if($this->session->flashdata('message')) : ?>
                 <div class="col-sm-8 col-md-offset-2">
@@ -108,17 +108,17 @@
             <label class="col-3 col-lg-2 col-form-label text-right">Keterangan</label>
             <div class="col-9 col-lg-10">
               <textarea name="keterangan" rows="5" class="form-control" cols="80"></textarea>
-              <!--<input name="keterangan" type="text" class="form-control">!-->
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-3 col-lg-2 col-form-label text-right">Foto</label>
-            <div class="col-9 col-lg-10">
-              <input type="file" name="gambar" class="form-control">
               <hr/>
               <input type="submit" class="btn btn-outline-primary" value="Simpan">
               <a href="<?php echo base_url()?>Pangkalan_minyak" class="btn btn-outline-danger">Batal</a>
             </div>
+          </div>
+          <!--<div class="form-group row">
+            <label class="col-3 col-lg-2 col-form-label text-right">Foto</label>
+            <div class="col-9 col-lg-10">
+              <input type="file" name="gambar" class="form-control">
+
+            </div>!-->
           </div>
         </form>
       </div>

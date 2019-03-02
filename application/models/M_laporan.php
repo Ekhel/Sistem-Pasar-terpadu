@@ -13,4 +13,21 @@ class M_laporan extends CI_Model{
   {
     $this->db->insert($this->table, $data);
   }
+  function getlaporan($param = 0)
+	{
+		return $this->db->get_where('tb_masuk', array('id_masuk' => $param))->row();
+	}
+  function hapus_laporan($param = 0)
+	{
+		$laporan = $this->getlaporan($param);
+		$this->db->delete('tb_masuk', array('id_masuk' => $param));
+
+    $this->session->set_flashdata("msg","
+          <div class='alert alert-success alert-dismissible fade show' role='alert'>
+            <strong>Data Pedagang Berhasil Dihapus!</strong>
+            <a href='#' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+            </a>
+          </div>");
+	}
 }

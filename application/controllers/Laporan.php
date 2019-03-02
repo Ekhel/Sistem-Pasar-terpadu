@@ -48,7 +48,7 @@ class Laporan extends CI_Controller {
 				'id' 	=> intval($val->id_masuk),
         'start' => date_format(date_create($val->tanggal) ,"Y-m-d"),
 				'title' => $val->nama,
-        'description' => $val->liter,
+        'description' => number_format($val->liter),
         'drum' => $val->drum,
         'penyedia' => $val->penyedia,
 				//'color' => $val->color,
@@ -60,4 +60,9 @@ class Laporan extends CI_Controller {
     $data['title'] = 'Kalender Laporan';
     $this->template->load('MasterAdmin','laporan/lap_calender',$data);
   }
+  function hapus_laporan($param = 0)
+	{
+		$this->M_laporan->hapus_laporan($param);
+		redirect('Laporan');
+	}
 }

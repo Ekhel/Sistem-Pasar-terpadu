@@ -33,20 +33,20 @@ class M_pangkalan extends CI_Model{
 	}
   function tambah_pangkalan()
 	{
-		$config['upload_path'] = './public/profile/';
-		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_width']  = 1024*3;
-		$config['max_height']  = 768*3;
+		//$config['upload_path'] = './public/profile/';
+		//$config['allowed_types'] = 'gif|jpg|png';
+		//$config['max_width']  = 1024*3;
+		//$config['max_height']  = 768*3;
 
-		$this->upload->initialize($config);
+	  //$this->upload->initialize($config);
 
-		if ( ! $this->upload->do_upload('gambar'))
-		{
-			$gambar = "";
-			$this->session->set_flashdata('message', $this->upload->display_errors());
-		} else{
-			$gambar = $this->upload->file_name;
-		}
+		//if ( ! $this->upload->do_upload('gambar'))
+		//{
+			//$gambar = "";
+			//$this->session->set_flashdata('message', $this->upload->display_errors());
+		//} else{
+			//$gambar = $this->upload->file_name;
+		//}
 
 		$object = array(
 			'nama' => $this->input->post('nama'),
@@ -61,11 +61,31 @@ class M_pangkalan extends CI_Model{
       'tanggal_mulai_operasi' => $this->input->post('penyedia'),
       'status' => $this->input->post('status'),
       'keterangan' => $this->input->post('keterangan'),
-			'gambar' => $gambar
+			'gambar' => $image_name
 		);
 		$this->db->insert('tb_pangkalan_minyak', $object);
 		$this->session->set_flashdata('message', "Data Pangkalan Berhasil Ditambahkan");
 	}
+  function tambah_pangkalan1($nama,$pemilik,$id_distrik,$id_kampung,$no,$alamat,$latitude,$longitude,$penyedia,$tanggal,$status,$keterangan,$image_name)
+  {
+    $data = array(
+      'nama' => $nama,
+      'pemilik' => $pemilik,
+      'id_distrik' => $id_distrik,
+      'id_kampung' => $id_kampung,
+      'no' => $no,
+      'alamat' => $alamat,
+      'latitude' => $latitude,
+      'longitude' => $longitude,
+      'penyedia' => $penyedia,
+      'tanggal_mulai_operasi' => $tanggal,
+      'status' => $status,
+      'keterangan' => $keterangan,
+      'gambar' => $image_name
+    );
+    $this->db->insert('tb_pangkalan_minyak', $data);
+		$this->session->set_flashdata('message', "Data Pangkalan Berhasil Ditambahkan");
+  }
   function getdistrik()
   {
     $query = $this->db->query("SELECT * FROM tb_distrik");
