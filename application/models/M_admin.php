@@ -42,4 +42,30 @@ class M_admin extends CI_Model{
             </a>
           </div>");
 	}
+  function hitung_pangkalan()
+  {
+    $query = $this->db->query("SELECT
+      COUNT(id_pangkalan) as jumlahpangkalan
+      FROM tb_pangkalan_minyak");
+
+      return $query->result();
+  }
+  function hitung_pedagang()
+  {
+    $query = $this->db->query("SELECT
+      COUNT(id_kios) as jumlahpedagang
+      FROM tb_kios");
+
+      return $query->result();
+  }
+  function lap_pengantaran_minyak()
+  {
+    $query = $this->db->query("SELECT *
+      FROM tb_masuk
+      JOIN tb_pangkalan_minyak ON tb_masuk.id_pangkalan = tb_pangkalan_minyak.id_pangkalan
+      ORDER BY tb_masuk.tanggal DESC
+      LIMIT 5");
+
+    return $query->result();
+  }
 }

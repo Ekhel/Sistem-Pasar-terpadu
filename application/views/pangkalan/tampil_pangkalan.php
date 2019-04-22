@@ -1,99 +1,115 @@
-<div class="card">
-  <div class="card-body">
-    <div class="col-lg-12">
-      <?php echo $this->session->flashdata('msg');?>
-      <div class="table-responsive">
-        <a href="<?php echo base_url()?>Pangkalan_minyak/tambah_pangkalan" class="btn btn-outline-primary" title="Tambah Data Pangkalan"><i class="fa fa-plus-circle"></i> Tambah</a>
-        <a href="#" class="btn btn-outline-primary" data-toggle="collapse" data-target="#demo"><i class="fas fa-filter"></i> Cari Data</a>
-        <a href="<?php echo base_url()?>Pangkalan_minyak/peta_pangkalan" class="btn btn-outline-primary"><i class="fas fa-map"></i> Lihat Peta</a>
-        <a href="<?php echo base_url()?>Pangkalan_minyak/print" target="_blank" class="btn btn-outline-primary"><i class="fas fa-print"></i> Cetak</a>
-        <a href="#" id="btnExport" class="btn btn-outline-primary"><i class="fas fa-file-excel"></i> Export</a>
-        <hr/>
-        <div id="demo" class="collapse">
-          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-            <form class="form-horizontal" method="get" action="<?php echo current_url(); ?>">
-              <div class="form-group row">
-                <label for="inputEmail2" class="col-3 col-lg-2 col-form-label text-right">Distrik</label>
-                <div class="col-6 col-lg-10">
-                  <select name="q" id="id_distrik" class="form-control">
-                    <option value="">-- Pilih --</option>
-          						<?php
-          						foreach($distrik as $dis => $val)
-          						{?>
-          						<option value="<?php echo $val->id_distrik;?>"><?php echo $val->nama_distrik; ?></option>
-          						<?php
-          						}?>
-                  </select>
-                  <br/>
-                  <input type="submit" class="btn btn-success" value=" Cari">
+<div class="row">
+  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="page-header">
+      <h2 class="pageheader-title">Pangkalan Minyak </h2>
+      <div class="page-breadcrumb">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Pangkalan Minyak</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Daftar Pangkalan Minyak</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <?php echo $this->session->flashdata('msg');?>
+        <div class="table-responsive">
+          <a href="<?php echo base_url()?>Pangkalan_minyak/tambah_pangkalan" class="btn btn-outline-primary" title="Tambah Data Pangkalan"><i class="fa fa-plus-circle"></i> Tambah</a>
+          <a href="#" class="btn btn-outline-warning" data-toggle="collapse" data-target="#demo"><i class="fas fa-filter"></i> Cari Data</a>
+          <a href="<?php echo base_url()?>Pangkalan_minyak/peta_pangkalan" class="btn btn-outline-success"><i class="fas fa-map"></i> Lihat Peta</a>
+          <a href="<?php echo base_url()?>Pangkalan_minyak/print" target="_blank" class="btn btn-outline-info"><i class="fas fa-print"></i> Cetak</a>
+          <a href="#" id="btnExport" class="btn btn-outline-secondary"><i class="fas fa-file-excel"></i> Export</a>
+          <hr/>
+          <div id="demo" class="collapse">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+              <form class="form-horizontal" method="get" action="<?php echo current_url(); ?>">
+                <div class="form-group row">
+                  <label for="inputEmail2" class="col-3 col-lg-2 col-form-label text-right">Distrik</label>
+                  <div class="col-6 col-lg-10">
+                    <select name="q" id="id_distrik" class="form-control">
+                      <option value="">-- Pilih --</option>
+            						<?php
+            						foreach($distrik as $dis => $val)
+            						{?>
+            						<option value="<?php echo $val->id_distrik;?>"><?php echo $val->nama_distrik; ?></option>
+            						<?php
+            						}?>
+                    </select>
+                    <br/>
+                    <input type="submit" class="btn btn-success" value=" Cari">
 
+                  </div>
                 </div>
-              </div>
-            </form>
-          </div>
+              </form>
+            </div>
 
+            </div>
           </div>
-        </div>
-        <div class="table-responsive" id="pangkalan">
-          <table class="small table table-bordered">
-            <thead>
-              <tr class="text-center">
-                <th class="center" rowspan="2">No</th>
-                <th rowspan="2">Nama Pangkalan</th>
-                <th rowspan="2">Pemilik</th>
-                <th rowspan="2">No Reg</th>
-                <th colspan="3">Lokasi</th>
-                <th rowspan="2">Penyedia</th>
-                <th rowspan="2">Status</th>
-                <th colspan="2">#</th>
-              </tr>
-              <tr>
-                <th class="text-center">Distrik</th>
-                <th>Kampung</th>
-                <th>Alamat</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              $no = 1;
-              foreach($result as $item){?>
-                <tr class="center">
-                  <td><?php echo $no++ ?></td>
-                  <td><?php echo anchor_popup('Pangkalan_minyak/print_data/'.$item->id_pangkalan,$item->nama)?></td>
-                  <td><?php echo $item->pemilik ?></td>
-                  <td><?php echo $item->no ?></td>
-                  <td><?php echo $item->nama_distrik ?></td>
-                  <td><?php echo $item->nama_kampung ?></td>
-                  <td><?php echo $item->alamat ?></td>
-                  <td><?php echo $item->penyedia ?></td>
-                  <td class="text-center">
-                    <?php if($item->status=="aktif"){
-                      echo "<span class='badge-dot badge-success mr-1' title='Aktif'></span>";
-                    }
-                    else{
-                      echo"<span class='badge-dot badge-brand mr-1' title='Tidak Aktif'></span>";
-                    }
-                    ?>
-                  </td>
-
-                  <td>
-                    <a href="<?php echo base_url('Pangkalan_minyak/edit_pangkalan/'.$item->id_pangkalan); ?>" class="fa fa-edit" data-toggle="tooltip" data-placement="bottom" title="Edit Data"></a>
-                  </td>
-                  <td>
-                    <a href="<?php echo base_url()?>Pangkalan_minyak/hapus_pangkalan/<?php echo $item->id_pangkalan?>" onclick="return confirm('Hapus Data ini Dari Database ?')" class="fa fa-trash" data-toggle="tooltip" data-placement="bottom" title="Hapus"></a>
-                  </td>
+          <div class="table-responsive" id="pangkalan">
+            <table class="small table table-bordered">
+              <thead>
+                <tr class="text-center">
+                  <th class="center" rowspan="2">No</th>
+                  <th rowspan="2">Nama Pangkalan</th>
+                  <th rowspan="2">Pemilik</th>
+                  <th rowspan="2">No Reg</th>
+                  <th colspan="3">Lokasi</th>
+                  <th rowspan="2">Penyedia</th>
+                  <th rowspan="2">Status</th>
+                  <th colspan="2">#</th>
                 </tr>
-              <?php }
-              ?>
-            </tbody>
-          </table>
+                <tr>
+                  <th class="text-center">Distrik</th>
+                  <th>Kampung</th>
+                  <th>Alamat</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                $no = 1;
+                foreach($result as $item){?>
+                  <tr class="center">
+                    <td><?php echo $no++ ?></td>
+                    <td><?php echo anchor_popup('Pangkalan_minyak/print_data/'.$item->id_pangkalan,$item->nama)?></td>
+                    <td><?php echo $item->pemilik ?></td>
+                    <td><?php echo $item->no ?></td>
+                    <td><?php echo $item->nama_distrik ?></td>
+                    <td><?php echo $item->nama_kampung ?></td>
+                    <td><?php echo $item->alamat ?></td>
+                    <td><?php echo $item->penyedia ?></td>
+                    <td class="text-center">
+                      <?php if($item->status=="aktif"){
+                        echo "<span class='badge-dot badge-success mr-1' title='Aktif'></span>";
+                      }
+                      else{
+                        echo"<span class='badge-dot badge-brand mr-1' title='Tidak Aktif'></span>";
+                      }
+                      ?>
+                    </td>
+
+                    <td>
+                      <a href="<?php echo base_url('Pangkalan_minyak/edit_pangkalan/'.$item->id_pangkalan); ?>" class="fa fa-edit" data-toggle="tooltip" data-placement="bottom" title="Edit Data"></a>
+                    </td>
+                    <td>
+                      <a href="<?php echo base_url()?>Pangkalan_minyak/hapus_pangkalan/<?php echo $item->id_pangkalan?>" onclick="return confirm('Hapus Data ini Dari Database ?')" class="fa fa-trash" data-toggle="tooltip" data-placement="bottom" title="Hapus"></a>
+                    </td>
+                  </tr>
+                <?php }
+                ?>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 <script type="text/javascript">
     $("[id$=btnExport]").click(function (e) {

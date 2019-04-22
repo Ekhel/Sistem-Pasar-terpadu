@@ -14,17 +14,17 @@
 	        datatype: $datatype.Table
 	      });
 	    });
+			window.onload = function() { window.print(); }
 	  });
 </script>
 <style type="text/css">
 	body {
 		margin: 0px;
 		padding: 0px;
-		width: 1250px;
-		height: 812px;
 	}
 	.title {
 		text-align: center;
+		font-family: Verdana;
 		font-weight: bold;
 		margin-bottom: 20px;
 	}
@@ -32,7 +32,7 @@
 		border-collapse: collapse;
 	}
 	.table thead {
-		font-size: 12px;
+		font-size: 11px;
 		font-weight: bold;
 	}
 	.table .header td{
@@ -40,14 +40,16 @@
 		text-align: center;
 	}
 	.table thead td {
-		background-color: #FFF;
+		background-color: #EEEEEE;
+	}
+	.prog {
+		background-color: #dddddd;
 	}
 	.table tr {
 		border-collapse: collapse;
 	}
 	.table td{
 		font-size: 12px;
-		font-style:normal;
 		padding: 5px;
 		border-collapse: collapse;
 		border: thin solid black;
@@ -64,6 +66,20 @@
 		{
 		    display: none !important;
 		}
+		body {
+    background: none;
+    -ms-zoom: 1.665;
+  	}
+	  div.portrait, div.landscape {
+	    margin: 0;
+	    padding: 0;
+	    border: none;
+	    background: none;
+	  }
+	  div.landscape {
+	    transform: rotate(270deg) translate(-276mm, 0);
+	    transform-origin: 0 0;
+	  }
 	}
 	.box_export {
 	    top: 0px;
@@ -89,21 +105,56 @@
 	  .box_export li a:hover {
 	    background-color: green;
 	  }
+    .lg-text {
+      font-size: 20px;
+      padding: 5px;
+      font-weight: bold;
+    }
+    .italic-text {
+      font-size: 11px;
+      font-style: italic;
+      padding: 5px;
+    }
+    .profile-img{
+        text-align: center;
+    }
+    .profile-img img{
+        width: 70%;
+        height: 100%;
+    }
+    .profile-img .file {
+        position: relative;
+        overflow: hidden;
+        margin-top: -20%;
+        width: 70%;
+        border: none;
+        border-radius: 0;
+        font-size: 15px;
+        background: #212529b8;
+    }
+    .profile-img .file input {
+        position: absolute;
+        opacity: 0;
+        right: 0;
+        top: 0;
+    }
+
 </style>
 
 <div class="box_export no-print"><ul><li><a href="#" id="cetak">Print</a></li></ul></div>
 <div id="container">
 	<div class="title">
-    <table width="100%">
-
+		<table width="100%">
 			<tr><td colspan='2' align='center'><text class="lg-text">PEMERINTAH KABUPATEN JAYAPURA</text></td></tr>
       <tr><td colspan='2' align='center'><text class="lg-text">DINAS PERINDUSTRIAN DAN PERDAGANGAN</text></td></tr>
+      <tr><td colspan='2' align='center'><text class="italic-text">Alamat : Jalan Raya Sentani – Depapre Tlp. (0967) 594710 Sentani</text></td></tr>
 	  </table>
     <hr/>
     <table width="100%">
       <tr><td colspan='2' align='center'>Data Pangkalan Minyak Tanah</td></tr>
     </table>
-	</div>
+
+	</br>
 	<table width="100%" class="table" border="1px">
 		<thead>
 			<tr class="header">
@@ -169,4 +220,5 @@
     }
     ?>
 	</table>
+</div>
 </div>

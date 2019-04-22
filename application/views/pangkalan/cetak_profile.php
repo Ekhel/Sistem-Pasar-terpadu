@@ -13,6 +13,7 @@
 	        datatype: $datatype.Table
 	      });
 	    });
+			window.onload = function() { window.print(); }
 	  });
 </script>
 <style type="text/css">
@@ -22,6 +23,7 @@
 	}
 	.title {
 		text-align: center;
+		font-family: Verdana;
 		font-weight: bold;
 		margin-bottom: 20px;
 	}
@@ -29,7 +31,7 @@
 		border-collapse: collapse;
 	}
 	.table thead {
-		font-size: 10px;
+		font-size: 11px;
 		font-weight: bold;
 	}
 	.table .header td{
@@ -46,7 +48,7 @@
 		border-collapse: collapse;
 	}
 	.table td{
-		font-size: 13px;
+		font-size: 12px;
 		padding: 5px;
 		border-collapse: collapse;
 		border: thin solid black;
@@ -89,7 +91,7 @@
 	    background-color: green;
 	  }
     .lg-text {
-      font-size: 18px;
+      font-size: 20px;
       padding: 5px;
       font-weight: bold;
     }
@@ -124,7 +126,7 @@
 
 </style>
 <title><?php echo $title ?></title>
-<div class="box_export no-print"><ul><li><a href="#" id="cetak">Print</a></li><li><a href="#" id="export_excel">Export</a></li></ul></div>
+<div class="box_export no-print"><ul><li><a href="#" id="cetak">Print</a></li><li><a href="#" id="export_excel"></a></li></ul></div>
 <div id="container">
 	<?php foreach($hasil as $d){ ?>
 	<div class="title">
@@ -147,7 +149,7 @@
     <br/>
     <table width="100%" class="table" border="2px">
       <tr>
-          <td width="300px">QRCODE</td>
+          <td width="300px">QR</td>
           <td width="10px"> :</td>
           <td height="200px">
             <img align="center" height="180" width="180" src="<?php echo base_url()?>public/profile/<?php echo $d->gambar ?>" alt=""/>
@@ -162,6 +164,11 @@
           <td width="300px">Pemilik Pangkalan</td>
           <td width="10px"> :</td>
           <td><text><?php echo $d->pemilik ?></text> </td>
+      </tr>
+			<tr>
+          <td width="300px">No Registrasi</td>
+          <td width="10px"> :</td>
+          <td><text><?php echo $d->no ?></text> </td>
       </tr>
       <tr>
           <td width="300px">Alamat</td>
@@ -179,7 +186,7 @@
           <td><?php echo $d->nama_kampung ?> </td>
       </tr>
       <tr>
-          <td width="300px">Spatial</td>
+          <td width="300px">Referensi Spatial</td>
           <td width="10px"> : </td>
           <td><?php echo $d->latitude ?> ,  <?php echo $d->longitude ?></td>
       </tr>

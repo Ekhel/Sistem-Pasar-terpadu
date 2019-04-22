@@ -13,6 +13,14 @@ class Admin extends CI_Controller{
 
   public function index()
   {
+    $data['title'] = 'Admin | Dashboard';
+    $data['pangkalan'] = $this->M_admin->hitung_pangkalan();
+    $data['penjual'] = $this->M_admin->hitung_pedagang();
+    $data['result'] = $this->M_admin->lap_pengantaran_minyak();
+		$this->template->load('MasterAdmin','admin/dashboard',$data);
+  }
+  public function pegawai()
+  {
     $data['title'] = 'Admin | Pegawai';
     $data['hasil'] = $this->M_admin->tampil_pegawai();
     $data['bidang'] = $this->db->query("SELECT * FROM tb_bidang ORDER BY id_bidang")->result();
@@ -146,4 +154,5 @@ class Admin extends CI_Controller{
 		$this->M_admin->hapus_pengguna($param);
 		redirect('Admin/pengguna');
 	}
+
 }

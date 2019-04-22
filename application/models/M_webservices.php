@@ -11,18 +11,14 @@ class M_webservices extends CI_Model {
 					# code...
 					$tahun = date("Y");
 				}
-
 				$url5 =  "http://sipp.jayapurakab.go.id/webservices/renja?tahun=".$tahun."&id_skpd=31";
-
 				$ch = curl_init();
 		    curl_setopt($ch, CURLOPT_URL, $url5);
 		    curl_setopt($ch, CURLOPT_HEADER, 0);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, 1);
-
 				$readjson = curl_exec($ch);
 				$datas =   json_decode($readjson,true);
-
 				$hasil = $datas['result'];
 
 		return $hasil;

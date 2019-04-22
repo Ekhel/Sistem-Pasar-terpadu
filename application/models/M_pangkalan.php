@@ -164,4 +164,5 @@ class M_pangkalan extends CI_Model{
   {
     return $this->db->get_where($tb_masuk,$id_pangkalan);
   }
+  
 }

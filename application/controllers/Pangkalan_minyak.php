@@ -47,19 +47,7 @@ class Pangkalan_minyak extends CI_Controller {
 
   function tambah_pangkalan_proses()
   {
-    //$this->form_validation->set_rules('nama', 'nama', 'trim|required');
-		//$this->form_validation->set_rules('pemilik', 'pemilik', 'trim|required');
-		//$this->form_validation->set_rules('id_distrik', 'id_distrik', 'trim|required');
-		//$this->form_validation->set_rules('id_kampung', 'id_kampung', 'trim|required');
-		//$this->form_validation->set_rules('no', 'no', 'trim|required');
-		//$this->form_validation->set_rules('alamat', 'alamat', 'trim|required');
-    //$this->form_validation->set_rules('latitude', 'latitude', 'trim|required');
-    //$this->form_validation->set_rules('longitude', 'longitude', 'trim|required');
-    //$this->form_validation->set_rules('tanggal_mulai_operasi', 'tanggal_mulai_operasi', 'trim|required');
-    //$this->form_validation->set_rules('status', 'status', 'trim|required');
-    //$this->form_validation->set_rules('keterangan', 'keterangan', 'trim|required');
     //qrcode --Start
-
     $nama=$this->input->post('nama');
 		$pemilik=$this->input->post('pemilik');
 		$id_distrik=$this->input->post('id_distrik');
@@ -120,7 +108,6 @@ class Pangkalan_minyak extends CI_Controller {
 		  	)
 		);
 		$this->googlemaps->initialize($config);
-
 		foreach($this->data_pangkalan() as $key => $value) :
 		$marker = array();
 		$marker['position'] = "{$value->latitude}, {$value->longitude}";
@@ -290,5 +277,10 @@ class Pangkalan_minyak extends CI_Controller {
     $data['title'] = 'DATA PANGKALAN MINYAK TANAH';
     $data['result'] = $this->M_pangkalan->tampil_pangkalan();
     $this->load->view('pangkalan/print_datapangkalan',$data);
+  }
+  public function scan_qr()
+  {
+    $data['title'] = 'Scan QR';
+    $this->template->load('MasterAdmin','pangkalan/scan_qr',$data);
   }
 }

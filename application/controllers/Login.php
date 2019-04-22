@@ -31,23 +31,23 @@ class Login extends CI_Controller {
 				$data['login'] = TRUE;
 				$this->session->set_userdata($data);
         if ($this->session->userdata('level')=='1'){
-				redirect('Home/Dashboard');
+				redirect('Admin');
 			  }
   			elseif ($this->session->userdata('level')=='2'){
           //helper_log("login", "Login ke applikasi");
-  		  redirect('Home/Dashboard');
+  		  redirect('Admin');
   			}
         elseif ($this->session->userdata('level')=='3'){
           //helper_log("login", "Login ke applikasi");
-  			redirect('Home/Dashboard');
+  			redirect('Admin');
   			}
         elseif ($this->session->userdata('level')=='4'){
           //helper_log("login", "Login ke applikasi");
-  			redirect('Home/Dashboard');
+  			redirect('Admin');
   			}
         elseif ($this->session->userdata('level')=='5'){
           //helper_log("login", "Login ke applikasi");
-  			redirect('Home/Dashboard');
+  			redirect('Admin');
   			}
 			}
 			else {
