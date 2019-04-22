@@ -1,6 +1,21 @@
-<div class="card">
-  <div class="card-body">
-    <div class="col-ld-12">
+<div class="row">
+  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="page-header">
+      <h2 class="pageheader-title">Kampung </h2>
+      <div class="page-breadcrumb">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Kampung</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Daftar Kampung</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+  <div class="card">
+    <div class="card-body">
       <?php echo $this->session->flashdata('msg');?>
       <div class="table-responsive">
         <table class="table table-bordered table-striped">

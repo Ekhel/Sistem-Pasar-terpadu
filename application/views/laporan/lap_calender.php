@@ -1,14 +1,29 @@
-
+<div class="row">
   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-    <div class="card">
-      <h5 class="card-header"><i class="fa fa-plus-circle"></i> Kalender Laporan Pengantaran Minyak</h5>
-      <div class="card-body">
-        <a href="<?php echo base_url()?>Laporan" class="btn btn-outline-primary"><i class="fa fa-list"></i> Lihat Table</a>
-        <hr/>
-        <div id='calendar1'></div>
+    <div class="page-header">
+      <h2 class="pageheader-title">Laporan</h2>
+      <div class="page-breadcrumb">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Kelender</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Laporan Per Kalender (Bulan)</li>
+          </ol>
+        </nav>
       </div>
     </div>
   </div>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+      <div class="card">
+        <h5 class="card-header"><i class="fa fa-plus-circle"></i> Kalender Laporan Pengantaran Minyak</h5>
+        <div class="card-body">
+          <a href="<?php echo base_url()?>Laporan" class="btn btn-outline-primary"><i class="fa fa-list"></i> Lihat Table</a>
+          <hr/>
+          <div id='calendar1'></div>
+        </div>
+      </div>
+    </div>
+</div>
+
 
   <script type="text/javascript">
     var get_data = '<?php echo $get_data; ?>';
