@@ -17,6 +17,7 @@
       <div class="card-body">
         <?php echo $this->session->flashdata('msg');?>
         <a href="<?php echo base_url()?>Pedagang/tambah_pedagang" class="btn btn-outline-primary"><i class="fa fa-plus-circle"></i> Tambah</a>
+        <a href="<?php echo base_url()?>Pedagang/kwitansi" class="btn btn-outline-success"><i class="fas fa-file-excel"></i> Kwitansi</a>
         <hr/>
         <div class="table-responsive">
           <table class="table table-bordered">

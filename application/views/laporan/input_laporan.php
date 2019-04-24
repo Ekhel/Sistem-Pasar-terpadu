@@ -72,8 +72,6 @@
     </div>
   </div>
 
-
-
 <script type="text/javascript">
     $('.form-control-chosen').chosen({
 	  });

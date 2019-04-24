@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_pedagang extends CI_Model{
   var $table = 'tb_kios';
+  var $kwitansi = 'tb_kwitansi';
   function tampil_pedagang()
   {
     $query = $this->db->query("SELECT * FROM tb_kios");
@@ -44,5 +45,24 @@ class M_pedagang extends CI_Model{
 
 		$this->db->update('tb_kios', $object, array('id_kios' => $param));
 		$this->session->set_flashdata('message', "Data Pedagang Berhasil Diubah");
+  }
+  function kwitansi()
+  {
+    $query = $this->db->query("SELECT *
+      FROM tb_kwitansi
+      LEFT JOIN tb_kios ON tb_kwitansi.id_kios = tb_kios.id_kios");
+    return $query->result();
+  }
+  function tambah_kwitansi($data){
+		$this->db->insert($this->kwitansi, $data);
+	}
+  function detail_kwitansi($id_kwitansi)
+  {
+    $query = $this->db->query("SELECT *
+      FROM tb_kwitansi
+      LEFT JOIN tb_kios ON tb_kwitansi.id_kios = tb_kios.id_kios
+      WHERE tb_kwitansi.id_kwitansi = '$id_kwitansi'");
+
+      return $query->result();
   }
 }
