@@ -51,7 +51,7 @@
           <tbody>
             <?php
             $no = 1;
-            foreach($kwitansi as $item){?>
+            foreach($filter_kwitansi as $item){?>
             <tr>
               <td><?php echo $no++ ?></td>
               <td><?php echo $item->nama_pedagang ?></td>

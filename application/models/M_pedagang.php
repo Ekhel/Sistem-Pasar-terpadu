@@ -4,18 +4,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_pedagang extends CI_Model{
   var $table = 'tb_kios';
   var $kwitansi = 'tb_kwitansi';
+
+
   function tampil_pedagang()
   {
     $query = $this->db->query("SELECT * FROM tb_kios");
     return $query->result();
   }
+
+
   function tambah_pedagang($data){
 		$this->db->insert($this->table, $data);
 	}
+
+
   function getpedagang($param = 0)
 	{
 		return $this->db->get_where('tb_kios', array('id_kios' => $param))->row();
 	}
+
+
   function hapus_pedagang($param = 0)
 	{
 		$pangkalan = $this->getpedagang($param);
@@ -29,6 +37,8 @@ class M_pedagang extends CI_Model{
             </a>
           </div>");
 	}
+
+
   function editpedagang($param = 0)
   {
     $pedagang = $this->getpedagang($param);
@@ -46,6 +56,8 @@ class M_pedagang extends CI_Model{
 		$this->db->update('tb_kios', $object, array('id_kios' => $param));
 		$this->session->set_flashdata('message', "Data Pedagang Berhasil Diubah");
   }
+
+
   function kwitansi()
   {
     $query = $this->db->query("SELECT *
@@ -53,9 +65,31 @@ class M_pedagang extends CI_Model{
       LEFT JOIN tb_kios ON tb_kwitansi.id_kios = tb_kios.id_kios");
     return $query->result();
   }
+
+
+
+
+  function filter_kwitansi()
+  {
+    $tanggal = $_GET['tanggal'];
+
+    $query = $this->db->query("SELECT *
+      FROM tb_kwitansi
+      LEFT JOIN tb_kios ON tb_kwitansi.id_kios = tb_kios.id_kios
+      WHERE tb_kwitansi.tanggal = '$tanggal'");
+
+    return $query->result();
+
+  }
+
+
+
+
   function tambah_kwitansi($data){
 		$this->db->insert($this->kwitansi, $data);
 	}
+
+
   function detail_kwitansi($id_kwitansi)
   {
     $query = $this->db->query("SELECT *
@@ -65,4 +99,6 @@ class M_pedagang extends CI_Model{
 
       return $query->result();
   }
+
+
 }
