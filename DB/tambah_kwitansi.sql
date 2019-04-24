@@ -3,7 +3,7 @@ CREATE TABLE `tb_kwitansi` (
   `id_kios` int(20) NOT NULL,
   `nama_petugas` varchar(50) NOT NULL,
   `jumlah` decimal(10,0) NOT NULL,
-  `keterangan` varchar(512) NOT NULL,
+  `untuh_pembayaran` varchar(512) NOT NULL,
   `tanggal` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -11,7 +11,7 @@ CREATE TABLE `tb_kwitansi` (
 -- Dumping data for table `tb_kwitansi`
 --
 
-INSERT INTO `tb_kwitansi` (`id_kwitansi`, `id_kios`, `nama_petugas`, `jumlah`, `keterangan`, `tanggal`) VALUES
+INSERT INTO `tb_kwitansi` (`id_kwitansi`, `id_kios`, `nama_petugas`, `jumlah`, `untuk_pembayaran`, `tanggal`) VALUES
 (1, 1, 'ekhel', '2500', 'Pembayaran Pajak Perdagangan', '2019-04-23'),
 (2, 2, 'ekhel', '23000', 'Pembayaran Pajak Perdagangan', '2019-04-23');
 
