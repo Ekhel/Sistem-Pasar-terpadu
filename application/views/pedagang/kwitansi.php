@@ -16,7 +16,25 @@
     <div class="card">
       <div class="card-body">
         <a href="<?php echo base_url()?>Pedagang/tambah_kwitansi" class="btn btn-outline-primary" title="Tambah Kwitansi"><i class="fa fa-plus-circle"></i> Tambah</a>
+        <a href="<?php echo base_url()?>Pedagang" class="btn btn-outline-secondary" data-toggle="tooltip" data-placement="bottm" title="Lihat Data Dalam Peta"><i class="fa fa-list"></i> Pedagang</a>
+        <a href="#" class="btn btn-outline-warning" data-toggle="collapse" data-target="#demo"><i class="fas fa-filter"></i> Cari Data</a>
         <hr/>
+        <div id="demo" class="collapse">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+            <form class="form-horizontal" method="get" action="<?php echo current_url(); ?>">
+              <div class="form-group row">
+                <label for="inputEmail2" class="col-3 col-lg-2 col-form-label text-right">Distrik</label>
+                <div class="col-6 col-lg-10">
+                  <input name="tanggal" type="date" class="form-control">
+                  <br/>
+                  <input type="submit" class="btn btn-success" value=" Cari">
+
+                </div>
+              </div>
+            </form>
+          </div>
+
+          </div>
         <table class="table table-bordered">
           <thead>
             <tr>

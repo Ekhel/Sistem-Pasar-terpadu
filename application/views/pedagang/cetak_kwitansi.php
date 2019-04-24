@@ -151,6 +151,10 @@
 		.col-11 {width: 91.66%;}
 		.col-12 {width: 100%;}
 		.header {
+    border: 2px dotted black;
+    padding: 15px;
+		}
+		.header1 {
     border: 1px solid black;
     padding: 15px;
 		}
@@ -235,30 +239,35 @@ function tgl_indo($tanggal){
 		</table>
 		<hr/>
 		<table width="100%">
-			<tr><td colspan='1' align='center'><text><u>Kwitansi Bukti Pembayaran</u></text></td></tr>
+			<tr><td colspan='1' align='center'><text><u>KWITANSI BUKTI PEMBAYARAN</u></text></td></tr>
 		</table>
 	</br>
 		<?php foreach($hasil as $item){?>
 		<table class="table-condesed">
 			<tr>
+				<td colspan='1' align='left'>No</td>
+				<td colspan='1' align='left'> : </td>
+				<td colspan='1' align='left'><strong># <?php echo $item->id_kwitansi ?></strong></td>
+			</tr>
+			<tr>
 				<td colspan='1' align='left'>Telah Diterima Dari</td>
 				<td colspan='1' align='left'> : </td>
-				<td colspan='1' align='left'><?php echo $item->nama_pedagang ?></td>
+				<td colspan='1' align='left'><strong><?php echo $item->nama_pedagang ?></strong></td>
 			</tr>
 			<tr>
 				<td colspan='1' align='left'>Yang Menerima</td>
 				<td colspan='1' align='left'> : </td>
-				<td colspan='1' align='left'><?php echo $item->nama_petugas ?></td>
+				<td colspan='1' align='left'><strong><?php echo $item->nama_petugas ?></strong></td>
 			</tr>
 			<tr>
 				<td colspan='1' align='left'>Uang Sejumlah</td>
 				<td colspan='1' align='left'> : </td>
-				<td colspan='1' align='left'><?php echo terbilang($item->jumlah) ?> rupiah</td>
+				<td colspan='1' align='left'>###<strong><?php echo terbilang($item->jumlah) ?> rupiah </strong>###</td>
 			</tr>
 			<tr>
 				<td colspan='1' align='left'>untuk Pembayaran</td>
 				<td colspan='1' align='left'> : </td>
-				<td colspan='1' align='left'><?php echo $item->untuk_pembayaran ?></td>
+				<td colspan='1' align='left'><strong><?php echo $item->untuk_pembayaran ?></strong></td>
 			</tr>
 		</table>
 	</br>
@@ -267,7 +276,7 @@ function tgl_indo($tanggal){
 
 	<table widht="50%">
 		<tr>
-			<td><text class="header">Rp. <?php echo number_format($item->jumlah) ?></text></td>
+			<td><text class="header1"><strong>Rp. <?php echo number_format($item->jumlah) ?> ,-</strong></text></td>
 		</tr>
 	</table>
 	<table widht="50%" align="right">
