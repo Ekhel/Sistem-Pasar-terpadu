@@ -4,8 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_pedagang extends CI_Model{
   var $table = 'tb_kios';
   var $kwitansi = 'tb_kwitansi';
-
-
+  
   function tampil_pedagang()
   {
     $query = $this->db->query("SELECT * FROM tb_kios");
@@ -38,7 +37,6 @@ class M_pedagang extends CI_Model{
           </div>");
 	}
 
-
   function editpedagang($param = 0)
   {
     $pedagang = $this->getpedagang($param);
@@ -66,9 +64,6 @@ class M_pedagang extends CI_Model{
     return $query->result();
   }
 
-
-
-
   function filter_kwitansi()
   {
     $tanggal = $_GET['tanggal'];
@@ -82,13 +77,9 @@ class M_pedagang extends CI_Model{
 
   }
 
-
-
-
   function tambah_kwitansi($data){
 		$this->db->insert($this->kwitansi, $data);
 	}
-
 
   function detail_kwitansi($id_kwitansi)
   {

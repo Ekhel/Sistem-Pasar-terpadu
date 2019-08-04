@@ -2,19 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pedagang extends CI_Controller {
-
-
-
-
   public function __construct()
   {
     parent::__construct();
     $this->load->model('M_pedagang');
     $this->load->library('form_validation');
   }
-
-
-
   public function index()
   {
     $data['title'] = 'Data Pedagang';
@@ -22,17 +15,12 @@ class Pedagang extends CI_Controller {
     $data['result'] = $this->M_pedagang->tampil_pedagang();
     $this->template->load('MasterAdmin','pedagang/tampil_pedagang',$data);
   }
-
-
-
   public function tambah_pedagang()
   {
     $data['title'] = 'Tambah Data Pedagang';
     $this->template->load('MasterAdmin','pedagang/tambah_pedagang',$data);
 
   }
-
-
 
   function tambah_pedagang_proses()
   {
@@ -54,17 +42,11 @@ class Pedagang extends CI_Controller {
           </div>");
 		redirect('Pedagang');
   }
-
-
-
   function hapus_pedagang($param = 0)
 	{
 		$this->M_pedagang->hapus_pedagang($param);
 		redirect('Pedagang');
 	}
-
-
-
   public function edit_pedagang($param = 0)
   {
     $this->data['title'] = "Edit Data Pedagang";
@@ -83,13 +65,9 @@ class Pedagang extends CI_Controller {
 
       redirect(current_url());
     }
-    $this->data['pedagang'] = $this->M_pedagang->getpedagang($param);
+    //$this->data['pedagang'] = $this->M_pedagang->getpedagang($param);
     $this->template->load('MasterAdmin','pedagang/edit_pedagang',$this->data);
   }
-
-
-
-
   public function kwitansi()
   {
     $data['title'] = 'Admin | Kwitansi Pajak';
@@ -97,8 +75,6 @@ class Pedagang extends CI_Controller {
 
     $this->template->load('MasterAdmin','pedagang/kwitansi',$data);
   }
-
-
   public function filter_kwitansi()
   {
     $data['title'] = 'Admin | Filter Kwitansi Pajak';
@@ -106,20 +82,12 @@ class Pedagang extends CI_Controller {
 
     $this->template->load('MasterAdmin','pedagang/filter_kwitansi',$data);
   }
-
-
-
-
   public function tambah_kwitansi()
   {
     $data['title'] = 'Admin | Tambah Kwitansi';
     $data['kios'] = $this->db->query("SELECT * FROM tb_kios")->result();
     $this->template->load('MasterAdmin','pedagang/tambah_kwitansi',$data);
   }
-
-
-
-
   function tambah_kwitansi_proses()
   {
     $data['id_kios'] = $this->input->post('id_kios');
@@ -137,9 +105,6 @@ class Pedagang extends CI_Controller {
           </div>");
 		redirect('Pedagang/kwitansi');
   }
-
-
-
   public function cetak_kwitansi($id_kwitansi = null)
   {
     $data['title'] = 'cetak kwitansi';
@@ -147,8 +112,4 @@ class Pedagang extends CI_Controller {
     $data['hasil'] = $this->M_pedagang->detail_kwitansi($this->uri->segment(3));
     $this->load->view('Pedagang/cetak_kwitansi',$data);
   }
-
-
-
-
 }

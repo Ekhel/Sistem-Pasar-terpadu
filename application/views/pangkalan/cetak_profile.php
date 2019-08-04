@@ -1,4 +1,4 @@
-<script src="<?php echo base_url('assets/libs/js/jquery-1.11.3.min.js')?>"></script>
+<script src="<?php echo base_url('assets/js/jquery-1.11.3.min.js')?>"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.battatech.excelexport.min.js"></script>
 <script type="text/javascript">
 	  $(document).ready(function() {

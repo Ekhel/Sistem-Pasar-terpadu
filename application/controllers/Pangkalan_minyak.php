@@ -189,7 +189,6 @@ class Pangkalan_minyak extends CI_Controller {
 
   function data_pangkalan()
   {
-
     $id_distrik = $this->input->get('q');
     $this->db->like('tb_pangkalan_minyak.id_distrik', $id_distrik);
     $this->db->join('tb_distrik', 'tb_pangkalan_minyak.id_distrik = tb_distrik.id_distrik', 'left');
